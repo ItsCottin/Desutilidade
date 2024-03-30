@@ -6,14 +6,19 @@
 package rcf.jform;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
+import rcf.aula.Salario;
+import rcf.exceptions.CampoVazioException;
 
 /**
  *
  * @author 00348046
  */
 public class Desutilidade extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Desutilidade
      */
@@ -31,19 +36,74 @@ public class Desutilidade extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        criticaCampo = new javax.swing.JDialog();
+        painelCritica = new javax.swing.JPanel();
+        labelCritica = new javax.swing.JLabel();
         painelMain = new javax.swing.JPanel();
         botaoIniciar = new javax.swing.JButton();
         tituloMain = new javax.swing.JLabel();
         painelAulas = new javax.swing.JPanel();
         botaoVoltarInicio = new javax.swing.JButton();
-        tabPrincipal = new javax.swing.JTabbedPane();
-        tabAula1 = new javax.swing.JTabbedPane();
-        tabAula2 = new javax.swing.JTabbedPane();
+        painelSalario = new javax.swing.JPanel();
+        labelTituloSalario = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
+        campoNome = new javax.swing.JTextField();
+        labelSalario = new javax.swing.JLabel();
+        campoSalario = new javax.swing.JTextField();
+        divisor = new javax.swing.JSeparator();
+        labelNomeResultado = new javax.swing.JLabel();
+        labelSalarioBrutoAtual = new javax.swing.JLabel();
+        botaoCalcular = new javax.swing.JButton();
+        labelIRSalarioAtual = new javax.swing.JLabel();
+        labelINSSSalarioAtual = new javax.swing.JLabel();
+        labelSalarioLiquidoAtual = new javax.swing.JLabel();
+        labelSalarioBrutoAumento = new javax.swing.JLabel();
+        labelIRSalarioAumento = new javax.swing.JLabel();
+        labelINSSSalarioAumento = new javax.swing.JLabel();
+        labelSalarioLiquidoAumento = new javax.swing.JLabel();
+
+        criticaCampo.setModal(true);
+        criticaCampo.setPreferredSize(new java.awt.Dimension(279, 67));
+        criticaCampo.setResizable(false);
+        criticaCampo.setSize(new java.awt.Dimension(279, 67));
+
+        painelCritica.setPreferredSize(new java.awt.Dimension(279, 67));
+
+        javax.swing.GroupLayout painelCriticaLayout = new javax.swing.GroupLayout(painelCritica);
+        painelCritica.setLayout(painelCriticaLayout);
+        painelCriticaLayout.setHorizontalGroup(
+            painelCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+        painelCriticaLayout.setVerticalGroup(
+            painelCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 67, Short.MAX_VALUE)
+        );
+
+        labelCritica.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelCritica.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout criticaCampoLayout = new javax.swing.GroupLayout(criticaCampo.getContentPane());
+        criticaCampo.getContentPane().setLayout(criticaCampoLayout);
+        criticaCampoLayout.setHorizontalGroup(
+            criticaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCritica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addGroup(criticaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(painelCritica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        criticaCampoLayout.setVerticalGroup(
+            criticaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, criticaCampoLayout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(labelCritica, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(criticaCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(painelCritica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 400));
         setMinimumSize(new java.awt.Dimension(400, 280));
-        setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(400, 280));
 
@@ -99,8 +159,119 @@ public class Desutilidade extends javax.swing.JFrame {
             }
         });
 
-        tabPrincipal.addTab("Salario", tabAula1);
-        tabPrincipal.addTab("IMC", tabAula2);
+        labelTituloSalario.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        labelTituloSalario.setForeground(new java.awt.Color(0, 51, 153));
+        labelTituloSalario.setText("Calculo Aumento de Salario");
+
+        labelNome.setText("Seu nome:");
+
+        labelSalario.setText("Digite seu salário:");
+
+        labelNomeResultado.setText("Seu nome: ");
+
+        labelSalarioBrutoAtual.setText("Seu salário bruto atual: ");
+
+        botaoCalcular.setText("Calcular");
+        botaoCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCalcularActionPerformed(evt);
+            }
+        });
+
+        labelIRSalarioAtual.setText("IR do salário atual: ");
+
+        labelINSSSalarioAtual.setText("INSS do salário atual: ");
+
+        labelSalarioLiquidoAtual.setText("Seu salário liquido atual: ");
+
+        labelSalarioBrutoAumento.setText("Seu salário bruto com aumento: ");
+
+        labelIRSalarioAumento.setText("IR do salário com aumento: ");
+
+        labelINSSSalarioAumento.setText("INSS do salário com aumento: ");
+
+        labelSalarioLiquidoAumento.setText("Seu salário liquido com aumento: ");
+
+        javax.swing.GroupLayout painelSalarioLayout = new javax.swing.GroupLayout(painelSalario);
+        painelSalario.setLayout(painelSalarioLayout);
+        painelSalarioLayout.setHorizontalGroup(
+            painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSalarioLayout.createSequentialGroup()
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelSalarioLayout.createSequentialGroup()
+                        .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelSalarioLayout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(labelTituloSalario))
+                            .addGroup(painelSalarioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelNomeResultado)))
+                        .addGap(0, 54, Short.MAX_VALUE))
+                    .addGroup(painelSalarioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(divisor)
+                            .addGroup(painelSalarioLayout.createSequentialGroup()
+                                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSalario)
+                                    .addComponent(labelNome))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(campoNome)
+                                    .addComponent(campoSalario))
+                                .addGap(10, 10, 10)
+                                .addComponent(botaoCalcular))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSalarioLayout.createSequentialGroup()
+                                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSalarioBrutoAtual)
+                                    .addComponent(labelIRSalarioAtual)
+                                    .addComponent(labelINSSSalarioAtual)
+                                    .addComponent(labelSalarioLiquidoAtual))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelIRSalarioAumento)
+                                    .addComponent(labelSalarioBrutoAumento)
+                                    .addComponent(labelINSSSalarioAumento)
+                                    .addComponent(labelSalarioLiquidoAumento))
+                                .addGap(9, 9, 9)))))
+                .addContainerGap())
+        );
+        painelSalarioLayout.setVerticalGroup(
+            painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSalarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTituloSalario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNome)
+                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSalario)
+                    .addComponent(campoSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCalcular))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(divisor, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelNomeResultado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSalarioBrutoAtual)
+                    .addComponent(labelSalarioBrutoAumento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIRSalarioAtual)
+                    .addComponent(labelIRSalarioAumento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelINSSSalarioAtual)
+                    .addComponent(labelINSSSalarioAumento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSalarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSalarioLiquidoAtual)
+                    .addComponent(labelSalarioLiquidoAumento))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout painelAulasLayout = new javax.swing.GroupLayout(painelAulas);
         painelAulas.setLayout(painelAulasLayout);
@@ -111,7 +282,7 @@ public class Desutilidade extends javax.swing.JFrame {
                 .addComponent(botaoVoltarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(painelAulasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                .addComponent(painelSalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelAulasLayout.setVerticalGroup(
             painelAulasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,8 +292,8 @@ public class Desutilidade extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(painelAulasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelAulasLayout.createSequentialGroup()
-                    .addComponent(tabPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 40, Short.MAX_VALUE)))
+                    .addComponent(painelSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 41, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,13 +324,54 @@ public class Desutilidade extends javax.swing.JFrame {
         // TODO add your handling code here:
         painelMain.setVisible(false);
         painelAulas.setVisible(true);
+        prepareTelaSalario(false);
     }//GEN-LAST:event_botaoIniciarActionPerformed
 
     private void botaoVoltarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarInicioActionPerformed
         // TODO add your handling code here:
         painelAulas.setVisible(false);
         painelMain.setVisible(true);
+        initComponents();
     }//GEN-LAST:event_botaoVoltarInicioActionPerformed
+
+    private void botaoCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCalcularActionPerformed
+        // TODO add your handling code here:
+        try {
+            campoIsEmpty(campoNome, labelNome);
+            campoIsEmpty(campoSalario, labelSalario);
+            Salario salarioCalss = new Salario();
+            float salarioAumentado = salarioCalss.aumentoSalario(Float.valueOf(campoSalario.getText()));
+            labelNomeResultado.setText(concatenaTextLabelTela(labelNomeResultado, campoNome.getText()));
+            labelSalarioBrutoAtual.setText(concatenaTextLabelTela(labelSalarioBrutoAtual, campoSalario.getText()));
+            labelIRSalarioAtual.setText(concatenaTextLabelTela(labelIRSalarioAtual, String.valueOf(salarioCalss.calculaIR(Float.valueOf(campoSalario.getText())))));
+            labelINSSSalarioAtual.setText(concatenaTextLabelTela(labelINSSSalarioAtual, String.valueOf(salarioCalss.calculaINSS(Float.valueOf(campoSalario.getText())))));
+            labelSalarioLiquidoAtual.setText(concatenaTextLabelTela(labelSalarioLiquidoAtual, String.valueOf(
+                    // Calculo de subtração
+                    Float.valueOf(campoSalario.getText()) - 
+                    salarioCalss.calculaINSS(Float.valueOf(campoSalario.getText())) - 
+                    salarioCalss.calculaIR(Float.valueOf(campoSalario.getText()))
+            )));
+            labelSalarioBrutoAumento.setText(concatenaTextLabelTela(labelSalarioBrutoAumento, String.valueOf(salarioAumentado)));
+            labelIRSalarioAumento.setText(concatenaTextLabelTela(labelIRSalarioAumento, String.valueOf(salarioCalss.calculaIR(salarioAumentado))));
+            labelINSSSalarioAumento.setText(concatenaTextLabelTela(labelINSSSalarioAumento, String.valueOf(salarioCalss.calculaINSS(salarioAumentado))));
+            labelSalarioLiquidoAumento.setText(concatenaTextLabelTela(labelSalarioLiquidoAumento, String.valueOf(
+                    // Calculo de subtração
+                    salarioAumentado - 
+                    salarioCalss.calculaINSS(salarioAumentado) - 
+                    salarioCalss.calculaIR(salarioAumentado)
+            )));
+            painelSalario.setSize(400, 400);
+            painelAulas.setSize(400, 400);
+            prepareTelaSalario(true);
+            
+        } catch (NumberFormatException numberException){
+            labelCritica.setText(numberException.getMessage());
+            criticaCampo.setVisible(true);
+        } catch (CampoVazioException campoException){
+            labelCritica.setText(campoException.getMessage());
+            criticaCampo.setVisible(true);            
+        }
+    }//GEN-LAST:event_botaoCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,15 +413,58 @@ public class Desutilidade extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*
+        Meus métodos    
+    */
+    
+    public void campoIsEmpty(JTextField campo, JLabel label) throws CampoVazioException{
+        if(campo.getText().isEmpty()){
+            throw new CampoVazioException(label.getText());
+        }
+    }
+    
+    public void prepareTelaSalario(boolean isVisivel){
+        labelINSSSalarioAtual.setVisible(isVisivel);
+        labelINSSSalarioAumento.setVisible(isVisivel);
+        labelIRSalarioAtual.setVisible(isVisivel);
+        labelIRSalarioAumento.setVisible(isVisivel);
+        labelNomeResultado.setVisible(isVisivel);
+        labelSalarioBrutoAtual.setVisible(isVisivel);
+        labelSalarioBrutoAumento.setVisible(isVisivel);
+        labelSalarioLiquidoAtual.setVisible(isVisivel);
+        labelSalarioLiquidoAumento.setVisible(isVisivel);
+    }
+    
+    public String concatenaTextLabelTela(JLabel label, String valor){
+        return label.getText() + " " + valor;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCalcular;
     private javax.swing.JButton botaoIniciar;
     private javax.swing.JButton botaoVoltarInicio;
+    private javax.swing.JTextField campoNome;
+    private javax.swing.JTextField campoSalario;
+    private javax.swing.JDialog criticaCampo;
+    private javax.swing.JSeparator divisor;
+    private javax.swing.JLabel labelCritica;
+    private javax.swing.JLabel labelINSSSalarioAtual;
+    private javax.swing.JLabel labelINSSSalarioAumento;
+    private javax.swing.JLabel labelIRSalarioAtual;
+    private javax.swing.JLabel labelIRSalarioAumento;
+    private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelNomeResultado;
+    private javax.swing.JLabel labelSalario;
+    private javax.swing.JLabel labelSalarioBrutoAtual;
+    private javax.swing.JLabel labelSalarioBrutoAumento;
+    private javax.swing.JLabel labelSalarioLiquidoAtual;
+    private javax.swing.JLabel labelSalarioLiquidoAumento;
+    private javax.swing.JLabel labelTituloSalario;
     private javax.swing.JPanel painelAulas;
+    private javax.swing.JPanel painelCritica;
     private javax.swing.JPanel painelMain;
-    private javax.swing.JTabbedPane tabAula1;
-    private javax.swing.JTabbedPane tabAula2;
-    private javax.swing.JTabbedPane tabPrincipal;
+    private javax.swing.JPanel painelSalario;
     private javax.swing.JLabel tituloMain;
     // End of variables declaration//GEN-END:variables
 }
